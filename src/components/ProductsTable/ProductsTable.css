@@ -1,0 +1,44 @@
+table {
+  border-collapse: collapse;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+th,
+td {
+  padding: 1em;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+
+th {
+  background-color: #f1f1f1;
+  font-weight: bold;
+}
+
+td img {
+  border-radius: 5px;
+}
+
+tr {
+  transition: all 0.3s ease-in-out;
+}
+
+tr:hover {
+  background-color: #fafafa;
+}
+
+/* Animation for Table Row on Hover */
+@keyframes rowHover {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.05);
+  }
+}
+
+tr:hover {
+  animation: rowHover 0.3s ease-in-out;
+}

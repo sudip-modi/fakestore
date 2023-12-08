@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import { Routes, Route, Switch, Link, BrowserRouter } from "react-router-dom";
+import ProductsTable from "./components/ProductsTable/ProductsTable.jsx";
+import EditProduct from "./components/EditProduct/EditProduct.jsx";
 
-function App() {
+const App = () => {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    fetch("https://fakestoreapi.com/products")
+      .then((response) => response.json())
+      .then((data) => setProducts(data));
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route index element={<ProductsTable products={products}/>} />
+        <Route
+          path="/product/edit/:productId"
+          element={<EditProduct products={products} />}
+        />
+      </Routes>
+    </BrowserRouter>
   );
-}
+};
 
 export default App;
